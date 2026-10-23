@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <LangVersion>latest</LangVersion>
+    <PlatformTarget>x64</PlatformTarget>
+    <Platforms>x64</Platforms>
+    <Prefer32Bit>false</Prefer32Bit>
+    <!-- Always output to bin\<Config>\net48, whether built via the solution or the project -->
+    <AppendPlatformToOutputPath>false</AppendPlatformToOutputPath>
+    <RootNamespace>IfcViewer</RootNamespace>
+    <AssemblyName>IfcViewer</AssemblyName>
+    <!-- Icon of the .exe (Explorer, taskbar); the window uses the same file as a resource -->
+    <ApplicationIcon>Assets\IfcViewer.ico</ApplicationIcon>
+    <!-- Version shown in the window title and in the .exe file properties -->
+    <Version>1.0.0</Version>
+    <FileVersion>1.0.0.0</FileVersion>
+    <Product>IFC Viewer</Product>
+    <Company>Troy Yu</Company>
+    <Copyright>Copyright © 2026 Troy Yu</Copyright>
+    <!-- Keep the product version a plain "1.0.0" (no "+commit" suffix added by the SDK) -->
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\IfcViewer.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+    <PackageReference Include="HelixToolkit.Wpf.SharpDX" Version="2.27.3" />
+    <!-- Also brings in the matching Xbim.Essentials 6.0.489 (IFC reading) -->
+    <PackageReference Include="Xbim.Geometry" Version="5.1.820" />
+  </ItemGroup>
+
+</Project>
