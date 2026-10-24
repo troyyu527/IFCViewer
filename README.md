@@ -1,16 +1,14 @@
 # IFC Viewer
 
-**IFC Viewer** is a free Windows program for looking at 3D building models saved as **IFC files**, the open
-file format that architects and engineers use to exchange building designs between programs such as Revit,
-ArchiCAD or Tekla. You can turn the building around, zoom in on details and click on any part of it.
+**IFC Viewer** is a Windows desktop program, written in C# / WPF, for looking at 3D building models saved as
+**IFC files**, the open file format that architects and engineers use to exchange building designs between
+programs such as Revit, ArchiCAD or Tekla. You can turn the building around, zoom in on details and click on any
+part of it.
 
 ![IFC Viewer with the Object Tree on the left, the 3D view in the middle and the Properties panel on the right; a roof slab is picked and shown in blue](docs/images/screenshot-main.png)
 
 *The buildingSMART sample "Building-Architecture" (IFC4) with a roof slab picked. Two small marker objects of the
 file were hidden with the right-click menu.*
-
-> **Educational project.** This program was made for study and learning purposes. It is free to use for
-> personal, educational and research purposes, and it is **not for sale**. See [Disclaimer](#disclaimer).
 
 ---
 
@@ -53,6 +51,20 @@ file were hidden with the right-click menu.*
 
 ---
 
+## Built with
+
+| Part | Technology |
+|---|---|
+| Language / UI | C#, WPF on **.NET Framework 4.8** (x64), MVVM with CommunityToolkit.Mvvm 8.4 |
+| IFC reading | **xBIM** — IFC2x3 and IFC4 through the shared `IIfc*` interfaces |
+| Geometry | **xBIM Geometry 5.1** (Open CASCADE inside) turns IFC shapes into triangle meshes |
+| 3D view | **HelixToolkit.Wpf.SharpDX 2.27** — DirectX 11 rendering, camera control and hit testing |
+
+Each IFC element becomes one mesh, so a clicked mesh maps straight back to its element. Models over 100 MB are
+kept in xBIM's on-disk storage instead of memory, which is what lets files of several hundred MB open.
+
+---
+
 ## What you need
 
 | | Requirement | How to check |
@@ -66,20 +78,17 @@ file were hidden with the right-click menu.*
 
 ---
 
-## Download and install
+## Build and run
 
-1. Open the **[Releases page](../../releases)** of this project.
-2. Under the newest version, click the **`.zip`** file to download it.
-3. Right-click the downloaded file → **Extract All…** → **Extract**.
-4. Open the extracted folder and double-click **`IfcViewer.exe`**.
+1. Install **Visual Studio 2026** with the **.NET desktop development** workload (includes the .NET Framework 4.8
+   targeting pack and the .NET 10 SDK).
+2. `git clone` this repository (or **Code → Download ZIP**).
+3. Open `IfcViewer.slnx`, select **Release** and **x64**, then **Build → Build Solution**.
+   From a command line: `dotnet build IfcViewer.slnx -c Release -p:Platform=x64`
+4. Run `src/IfcViewer/bin/Release/net48/IfcViewer.exe`.
 
-> **Windows shows "Windows protected your PC"?** This message appears for programs from small, independent
-> developers that aren't sold in a store. Click **More info → Run anyway**. Only do this if you downloaded
-> the file from the official Releases page above.
-
-**To uninstall:** delete the folder. To also remove the remembered settings and log files, delete the folder
-`%LocalAppData%\IfcViewer` (paste this into the Explorer address bar). The program doesn't install anything
-into Windows.
+Third-party packages are downloaded automatically during the first build. Settings and log files are kept in
+`%LocalAppData%\IfcViewer`; delete that folder to reset them.
 
 ---
 
@@ -221,8 +230,8 @@ Good to know:
 ## Problems and questions
 
 **The program doesn't start.**
-Make sure you extracted the zip file first: the program can't run from inside it. If it still doesn't start,
-install the **Microsoft Visual C++ Redistributable (x64)** from
+Make sure it was built for **x64**. If it still doesn't start, install the **Microsoft Visual C++
+Redistributable (x64)** from
 [Microsoft's download page](https://learn.microsoft.com/cpp/windows/latest-supported-vc-redist) and try again.
 
 **I get an error when opening a file.**
@@ -261,37 +270,3 @@ internet, and it does not collect usage statistics. It stores only these files, 
 - `settings.xml` — window size and position, panel widths, last opened folder
 - `logs\` — a log file per day (names of opened files, load times, errors); files older than two weeks are deleted
 - `Temp\` — temporary copies of very large models while they are open; removed when the program closes or starts
-
----
-
-## Disclaimer
-
-- This is an **educational project**, made for study and learning. It is not a commercial product and is not
-  offered for sale.
-- The software is provided **"as is", without warranty of any kind**. The author is not liable for any damage
-  or loss resulting from its use.
-- Do not use it as the only basis for design, construction, cost or safety decisions. Always check important
-  information in the original files with professional tools.
-- This project is **not affiliated with, endorsed by or sponsored by** any of the companies or organisations
-  mentioned in this document.
-
-## Trademarks
-
-"IFC" and "buildingSMART" are trademarks of buildingSMART International. "Revit" is a trademark of Autodesk, Inc. "ArchiCAD" is a trademark of Graphisoft SE. "Tekla" is a trademark of Trimble
-Inc. "Windows" and "DirectX" are trademarks of Microsoft Corporation. All other trademarks belong to their
-respective owners and are used here only to describe compatibility.
-
----
-
-## Building from source
-
-For developers who want to build the program themselves:
-
-1. Install **Visual Studio 2026** with the **.NET desktop development** workload (includes the .NET Framework 4.8
-   targeting pack and the .NET 10 SDK).
-2. Download the source: **Code → Download ZIP** on this page, or `git clone` the repository.
-3. Open `IfcViewer.slnx`, select **Release** and **x64**, then **Build → Build Solution**.
-   From a command line: `dotnet build IfcViewer.slnx -c Release -p:Platform=x64`
-4. The program is created in `src/IfcViewer/bin/Release/net48/`.
-
-Third-party packages are downloaded automatically during the first build.
