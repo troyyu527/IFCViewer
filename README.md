@@ -58,7 +58,7 @@ file were hidden with the right-click menu.*
 | Language / UI | C#, WPF on **.NET Framework 4.8** (x64), MVVM with CommunityToolkit.Mvvm 8.4 |
 | IFC reading | **xBIM** — IFC2x3 and IFC4 through the shared `IIfc*` interfaces |
 | Geometry | **xBIM Geometry 5.1** (Open CASCADE inside) turns IFC shapes into triangle meshes |
-| 3D view | **HelixToolkit.Wpf.SharpDX 2.27** — DirectX 11 rendering, camera control and hit testing |
+| 3D view | **HelixToolkit.Wpf.SharpDX 2.27** — DirectX 11 rendering, camera control and picking |
 
 Each IFC element becomes one mesh, so a clicked mesh maps straight back to its element. Models over 100 MB are
 kept in xBIM's on-disk storage instead of memory, which is what lets files of several hundred MB open.
@@ -167,7 +167,7 @@ different kinds. Only properties all of them have are listed; a value that diffe
 ### Where to get example files
 
 You can try the program with the free example files from
-**[buildingSMART Sample Test Files](https://github.com/buildingSMART/Sample-Test-Files)**: open a folder,
+**[buildingSMART sample files](https://github.com/buildingSMART/Sample-Test-Files)**: open a folder,
 click a file ending in `.ifc`, then click the download button.
 
 ---

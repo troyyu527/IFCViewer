@@ -1,7 +1,7 @@
 # Sample IFC files
 
 IFC files in this folder are not committed (see `.gitignore`). Re-download them from
-[buildingSMART/Sample-Test-Files](https://github.com/buildingSMART/Sample-Test-Files):
+[buildingSMART's sample files](https://github.com/buildingSMART/Sample-Test-Files):
 
 | Local name | Schema | Source path in repo |
 |---|---|---|
